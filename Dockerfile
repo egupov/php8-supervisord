@@ -29,6 +29,12 @@ RUN apk --no-cache update \
     \
     && docker-php-ext-install pdo_pgsql
 
+# Installing Rabbit-client
+RUN apk add --no-cache rabbitmq-c rabbitmq-c-dev && \
+    mkdir -p /usr/src/php/ext/amqp && \
+    curl -fsSL https://pecl.php.net/get/amqp | tar xvz -C "/usr/src/php/ext/amqp" --strip 1 && \
+    docker-php-ext-install amqp
+
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 COPY ./etc/php8-alpine/my_wrapper_script.sh /usr/bin/my_wrapper_script.sh
