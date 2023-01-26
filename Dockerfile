@@ -18,7 +18,7 @@ RUN rm -rf composer-setup.php
 # Installing supervisor
 RUN apk update && apk add --no-cache supervisor
 RUN mkdir -p "/etc/supervisor/logs"
-COPY ./etc/php8/supervisord.conf /etc/supervisor/supervisord.conf
+COPY ./etc/php8-alpine/supervisord.conf /etc/supervisor/supervisord.conf
 
 # Installing pgsql
 RUN apk --no-cache update \
