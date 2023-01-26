@@ -22,5 +22,5 @@ COPY ./etc/php8/supervisord.conf /etc/supervisor/supervisord.conf
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
-COPY my_wrapper_script.sh /usr/bin/my_wrapper_script.sh
+COPY ./etc/php8-alpine/my_wrapper_script.sh /usr/bin/my_wrapper_script.sh
 CMD /usr/bin/my_wrapper_script.sh
