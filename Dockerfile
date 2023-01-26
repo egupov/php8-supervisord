@@ -20,6 +20,15 @@ RUN apk update && apk add --no-cache supervisor
 RUN mkdir -p "/etc/supervisor/logs"
 COPY ./etc/php8/supervisord.conf /etc/supervisor/supervisord.conf
 
+# Installing pgsql
+RUN apk --no-cache update \
+    && apk add --no-cache autoconf g++ make \
+    postgresql-dev \
+    \
+    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
+    \
+    && docker-php-ext-install pdo_pgsql
+
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 COPY ./etc/php8-alpine/my_wrapper_script.sh /usr/bin/my_wrapper_script.sh
