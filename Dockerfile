@@ -29,6 +29,9 @@ RUN apk --no-cache update \
     \
     && docker-php-ext-install pdo_pgsql
 
+# Installing mysql
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+
 # Installing Rabbit-client
 RUN apk add --no-cache rabbitmq-c rabbitmq-c-dev && \
     mkdir -p /usr/src/php/ext/amqp && \
