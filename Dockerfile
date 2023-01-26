@@ -37,5 +37,6 @@ RUN apk add --no-cache rabbitmq-c rabbitmq-c-dev && \
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
+RUN chmod -R 777 /var/www/storage
 COPY ./etc/php8-alpine/my_wrapper_script.sh /usr/bin/my_wrapper_script.sh
 CMD /usr/bin/my_wrapper_script.sh
